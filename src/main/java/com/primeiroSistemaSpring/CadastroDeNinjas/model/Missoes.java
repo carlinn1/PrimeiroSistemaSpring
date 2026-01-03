@@ -9,24 +9,21 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_cadastro")
+@Table(name = "tb_missoes")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ninja {
+public class Missoes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Double id;
-    private String nome;
-    private String email;
-    private int idade;
+    private int id;
+    private String nomeMissao;
+    private String dificuldade;
 
-    // Um ninja pode ter varias missoes
-    @ManyToOne
-    @JoinColumn(name = "missoes_id")
-    private Missoes missoes;
-
+    // Uma missao pode ter varios ninjas
+    @OneToMany(mappedBy = "missoes")
+    private List<Ninja> ninjas;
 
 }
